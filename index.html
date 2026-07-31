@@ -3,18 +3,32 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Annapurna Gollapalli | Portfolio</title>
+<title>Annapurna Gollapalli | Data & Business Analyst</title>
+<meta name="description" content="Annapurna Gollapalli — Data & Business Analyst. SQL, Python, Power BI, Tableau, requirements gathering, BRD/FRD, Jira. Portfolio of internship projects and dashboards." />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
 <script src="https://cdn.tailwindcss.com"></script>
-
 <script>
 tailwind.config = {
   darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        primary: '#5B5FEF',
-        accent: '#F59E0B'
+        ink: '#0F1B2D',
+        paper: '#EEF1F5',
+        panel: '#FFFFFF',
+        signal: '#1F8A70',
+        stamp: '#B8862E',
+        slate: '#475569'
+      },
+      fontFamily: {
+        display: ['"Space Grotesk"', 'ui-sans-serif', 'sans-serif'],
+        body: ['Inter', 'ui-sans-serif', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace']
       }
     }
   }
@@ -22,261 +36,386 @@ tailwind.config = {
 </script>
 
 <style>
-html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', system-ui, sans-serif; }
 
-.glass {
-  backdrop-filter: blur(15px);
-  background: rgba(255, 255, 255, 0.6);
-}
+  .grid-texture {
+    background-image:
+      linear-gradient(rgba(15,27,45,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15,27,45,0.05) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .dark .grid-texture {
+    background-image:
+      linear-gradient(rgba(31,138,112,0.10) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(31,138,112,0.10) 1px, transparent 1px);
+  }
 
-.dark .glass {
-  background: rgba(30, 30, 30, 0.6);
-}
+  .tab {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
 
-.skill-bar {
-  transition: width 1.5s ease-in-out;
-}
+  .kpi-value { font-family: 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; }
+
+  .leader {
+    background-image: linear-gradient(to right, currentColor 33%, rgba(0,0,0,0) 0%);
+    background-position: bottom;
+    background-size: 4px 1px;
+    background-repeat: repeat-x;
+    opacity: 0.35;
+  }
+
+  .card {
+    background: var(--panel, #fff);
+    border: 1px solid rgba(15,27,45,0.08);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px -12px rgba(15,27,45,0.25);
+    border-color: rgba(31,138,112,0.35);
+  }
+  .dark .card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.10);
+  }
+  .dark .card:hover {
+    border-color: rgba(31,138,112,0.5);
+  }
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid #1F8A70;
+    outline-offset: 3px;
+  }
+
+  .type-cursor { animation: blink 1s step-start infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation: none !important; transition: none !important; }
+  }
 </style>
 </head>
 
-<body class="bg-gradient-to-r from-indigo-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 text-gray-800 dark:text-gray-200 transition duration-500">
+<body class="bg-paper dark:bg-ink text-ink dark:text-gray-100 transition-colors duration-300 font-body">
 
 <!-- NAVBAR -->
-<nav class="glass sticky top-0 z-50 shadow-md">
-  <div class="max-w-6xl mx-auto flex justify-between items-center p-4">
-    <h1 class="font-bold text-lg text-primary">Annapurna Gollapalli</h1>
+<nav class="sticky top-0 z-50 bg-paper/90 dark:bg-ink/90 backdrop-blur border-b border-ink/10 dark:border-white/10">
+  <div class="max-w-6xl mx-auto flex justify-between items-center px-5 py-3">
+    <a href="#top" class="font-display font-bold text-lg">Annapurna Gollapalli</a>
 
-    <div class="flex items-center space-x-6 text-sm font-medium">
-      <a href="#about" class="hover:text-primary">About</a>
-      <a href="#skills" class="hover:text-primary">Skills</a>
-<a href="#internships" class="hover:text-primary">Internships</a>
-      <a href="#projects" class="hover:text-primary">Projects</a>
-      <a href="#certifications" class="hover:text-primary">Certifications</a>      
-      <a href="#contact" class="hover:text-primary">Contact</a>
-      <button onclick="toggleDarkMode()" class="text-xl">🌙</button>
+    <div class="hidden md:flex items-center gap-7 text-sm font-medium">
+      <a href="#about" class="hover:text-signal dark:hover:text-signal">About</a>
+      <a href="#skills" class="hover:text-signal dark:hover:text-signal">Skills</a>
+      <a href="#internships" class="hover:text-signal dark:hover:text-signal">Experience</a>
+      <a href="#projects" class="hover:text-signal dark:hover:text-signal">Projects</a>
+      <a href="#certifications" class="hover:text-signal dark:hover:text-signal">Certifications</a>
+      <a href="#contact" class="hover:text-signal dark:hover:text-signal">Contact</a>
+      <button onclick="toggleDarkMode()" aria-label="Toggle dark mode" class="text-lg">🌙</button>
     </div>
+
+    <div class="flex items-center gap-3 md:hidden">
+      <button onclick="toggleDarkMode()" aria-label="Toggle dark mode" class="text-lg">🌙</button>
+      <button onclick="toggleMobileMenu()" aria-label="Open menu" aria-expanded="false" id="menu-btn" class="text-2xl leading-none">☰</button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="hidden md:hidden flex-col gap-1 px-5 pb-4 text-sm font-medium border-t border-ink/10 dark:border-white/10">
+    <a href="#about" class="block py-2" onclick="toggleMobileMenu()">About</a>
+    <a href="#skills" class="block py-2" onclick="toggleMobileMenu()">Skills</a>
+    <a href="#internships" class="block py-2" onclick="toggleMobileMenu()">Experience</a>
+    <a href="#projects" class="block py-2" onclick="toggleMobileMenu()">Projects</a>
+    <a href="#certifications" class="block py-2" onclick="toggleMobileMenu()">Certifications</a>
+    <a href="#contact" class="block py-2" onclick="toggleMobileMenu()">Contact</a>
   </div>
 </nav>
 
 <!-- HERO -->
-<section class="text-center py-20 px-6">
-  <h1 class="text-4xl md:text-5xl font-extrabold text-primary mb-6">
-    Annapurna Gollapalli
-  </h1>
+<header id="top" class="grid-texture px-6 pt-20 pb-16">
+  <div class="max-w-5xl mx-auto">
+    <p class="tab text-stamp mb-4">// data_analyst · business_analyst</p>
+    <h1 class="font-display text-4xl md:text-6xl font-bold mb-4 leading-tight">
+      Annapurna<br class="hidden sm:block" /> Gollapalli
+    </h1>
+    <h2 class="text-lg md:text-xl font-medium mb-6 text-slate dark:text-gray-300 font-mono">
+      <span id="typing-text"></span><span class="type-cursor">_</span>
+    </h2>
+    <p class="max-w-2xl text-base md:text-lg leading-relaxed mb-10 text-ink/85 dark:text-gray-300">
+      I build the analysis that turns messy data into decisions — and the documentation
+      that defines what needs to be built in the first place. MCA (AI & ML) candidate with
+      hands-on experience across data cleaning, predictive modeling, dashboard reporting,
+      and business requirements documentation.
+    </p>
 
-  <h2 class="text-xl md:text-2xl font-semibold mb-6">
-    <span id="typing-text"></span>
-  </h2>
-  <p class="max-w-2xl mx-auto text-lg leading-relaxed mb-8">
-    MCA (AI & ML) student with hands-on internship experience in data cleaning,
-    predictive modeling, and dashboard reporting. Passionate about transforming
-    raw data into meaningful business insights.
-  </p>
+    <div class="flex flex-wrap gap-4 mb-14">
+      <a href="https://github.com/annapurnagollapalli" target="_blank" rel="noopener noreferrer"
+         class="bg-ink dark:bg-signal text-white px-6 py-2.5 rounded-md font-medium text-sm hover:opacity-90 transition">
+         View GitHub
+      </a>
+      <a href="https://www.linkedin.com/in/annapurna-gollapalli-b4436a262/" target="_blank" rel="noopener noreferrer"
+         class="border border-ink dark:border-white px-6 py-2.5 rounded-md font-medium text-sm hover:bg-ink hover:text-white dark:hover:bg-white dark:hover:text-ink transition">
+         Connect on LinkedIn
+      </a>
+    </div>
 
-  <div class="space-x-4">
-  <a href="https://github.com/annapurnagollapalli"
-     target="_blank" rel="noopener noreferrer"
-     class="bg-primary text-white px-6 py-2 rounded-lg hover:bg-indigo-700">
-     GitHub
-  </a>
-  <a href="https://www.linkedin.com/in/annapurna-gollapalli-b4436a262/"
-     target="_blank" rel="noopener noreferrer"
-     class="border border-primary px-6 py-2 rounded-lg hover:bg-primary hover:text-white">
-     LinkedIn
-  </a>
-</div>
-</section>
+    <!-- KPI STRIP — signature element -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+      <div class="card rounded-lg p-4">
+        <p class="kpi-value text-2xl md:text-3xl font-semibold text-signal">78%</p>
+        <p class="tab text-slate dark:text-gray-400 mt-1">model accuracy</p>
+      </div>
+      <div class="card rounded-lg p-4">
+        <p class="kpi-value text-2xl md:text-3xl font-semibold text-signal">04</p>
+        <p class="tab text-slate dark:text-gray-400 mt-1">internship projects</p>
+      </div>
+      <div class="card rounded-lg p-4">
+        <p class="kpi-value text-2xl md:text-3xl font-semibold text-stamp">02</p>
+        <p class="tab text-slate dark:text-gray-400 mt-1">certifications</p>
+      </div>
+      <div class="card rounded-lg p-4">
+        <p class="kpi-value text-2xl md:text-3xl font-semibold text-stamp">01</p>
+        <p class="tab text-slate dark:text-gray-400 mt-1">live dashboard</p>
+      </div>
+    </div>
+  </div>
+</header>
 
 <!-- ABOUT -->
-<section id="about" class="max-w-5xl mx-auto py-16 px-6">
-  <h3 class="text-2xl font-bold text-primary mb-4">Professional Summary</h3>
-  <p class="leading-relaxed">
-I am a Tech & Data Enthusiast with a background in AI & Robotics and currently pursuing an MCA in AI & ML from Amity University. 
-I specialize in analyzing data, generating insights, and supporting business decision-making. 
-My skills include Python, SQL, Excel, Power BI, and data visualization. 
-I am seeking entry-level opportunities in Data Analysis or Business Analysis to contribute effectively while learning continuously.  </p>
+<section id="about" class="max-w-4xl mx-auto py-16 px-6">
+  <div class="flex items-center gap-3 mb-6">
+    <span class="tab bg-ink text-white dark:bg-white dark:text-ink px-2.5 py-1 rounded">§01</span>
+    <h3 class="font-display text-2xl font-bold">About</h3>
+  </div>
+  <p class="leading-relaxed text-ink/85 dark:text-gray-300">
+    I'm currently pursuing an MCA in AI & ML at Amity University, with hands-on internship
+    experience analyzing data, generating insights, and supporting business decision-making
+    using Python, SQL, Excel, Power BI, and Tableau. Alongside my technical work, I completed
+    dedicated Business Analysis training covering requirement gathering, user stories, and
+    BRD/FRD documentation — giving me both sides of the analyst function: the technical
+    ability to build and analyze data, and the business-facing skill to define what needs
+    to be built. I'm seeking entry-level opportunities in Data Analysis or Business Analysis
+    where I can contribute from day one while continuing to learn.
+  </p>
 </section>
 
 <!-- SKILLS -->
-<section id="skills" class="py-16 px-6">
-  <h3 class="text-2xl font-bold text-center text-primary mb-10">Skills & Tools</h3>
+<section id="skills" class="py-16 px-6 grid-texture border-y border-ink/10 dark:border-white/10">
+  <div class="max-w-5xl mx-auto">
+    <div class="flex items-center gap-3 mb-10">
+      <span class="tab bg-ink text-white dark:bg-white dark:text-ink px-2.5 py-1 rounded">§02</span>
+      <h3 class="font-display text-2xl font-bold">Skills &amp; Tools</h3>
+    </div>
 
-  <div class="max-w-4xl mx-auto space-y-6">
+    <div class="grid md:grid-cols-3 gap-5">
 
-   <div class="skills-container">
+      <div class="card rounded-xl p-6">
+        <p class="tab text-signal mb-4">data · visualization</p>
+        <ul class="space-y-2.5 text-sm">
+          <li class="leader flex justify-between"><span>Power BI</span><span class="text-slate dark:text-gray-400">certified</span></li>
+          <li class="leader flex justify-between"><span>Tableau</span><span class="text-slate dark:text-gray-400">public</span></li>
+          <li class="leader flex justify-between"><span>Microsoft Excel</span><span class="text-slate dark:text-gray-400"></span></li>
+          <li class="leader flex justify-between"><span>Data cleaning</span><span class="text-slate dark:text-gray-400"></span></li>
+        </ul>
+      </div>
 
-<div class="skill-box">
-<h3>1.Data Analysis & Visualization</h3>
-<ul>
-<li>- Microsoft Excel</li>
-<li>- Power BI</li>
-<li>- Tableau</li>
-  
-<li>2.Data Cleaning & Interpretation</li>
-</ul>
-</div>
+      <div class="card rounded-xl p-6">
+        <p class="tab text-signal mb-4">programming</p>
+        <ul class="space-y-2.5 text-sm">
+          <li class="leader flex justify-between"><span>Python</span><span class="text-slate dark:text-gray-400">pandas, sklearn</span></li>
+          <li class="leader flex justify-between"><span>SQL</span><span class="text-slate dark:text-gray-400">queries, joins</span></li>
+          <li class="leader flex justify-between"><span>Dask</span><span class="text-slate dark:text-gray-400">large-scale</span></li>
+          <li class="leader flex justify-between"><span>Git / GitHub</span><span class="text-slate dark:text-gray-400"></span></li>
+        </ul>
+      </div>
 
-<div class="skill-box">
-<h3>3.Programming & Technical</h3>
-<ul>
-<li>- Python (Basic)</li>
-<li>- SQL (Basic Queries)</li>
-<li>- HTML</li>
-<li>- GitHub</li>
-</ul>
-</div>
+      <div class="card rounded-xl p-6">
+        <p class="tab text-stamp mb-4">business analysis</p>
+        <ul class="space-y-2.5 text-sm">
+          <li class="leader flex justify-between"><span>Requirement gathering</span><span class="text-slate dark:text-gray-400"></span></li>
+          <li class="leader flex justify-between"><span>BRD / FRD</span><span class="text-slate dark:text-gray-400">documentation</span></li>
+          <li class="leader flex justify-between"><span>User stories</span><span class="text-slate dark:text-gray-400"></span></li>
+          <li class="leader flex justify-between"><span>Jira</span><span class="text-slate dark:text-gray-400">SDLC</span></li>
+        </ul>
+      </div>
 
-<div class="skill-box">
-<h3>4.Business Analysis</h3>
-<ul>
-<li>- Requirement Gathering</li>
-<li>- BRD Documentation</li>
-<li>- FRD Documentation</li>
-<li>- User Stories</li>
-<li>- SDLC Understanding</li>
-</ul>
-</div>
-   </div>
-</div>
+    </div>
+  </div>
 </section>
 
-  <!-- INTERNSHIPS -->
+<!-- INTERNSHIPS -->
 <section id="internships" class="py-16 px-6">
-  <h3 class="text-2xl font-bold text-center mb-10">Internship Experience</h3>
+  <div class="max-w-3xl mx-auto">
+    <div class="flex items-center gap-3 mb-10">
+      <span class="tab bg-ink text-white dark:bg-white dark:text-ink px-2.5 py-1 rounded">§03</span>
+      <h3 class="font-display text-2xl font-bold">Experience</h3>
+    </div>
 
-  <div class="max-w-5xl mx-auto space-y-8">
-
-    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md">
-      <h4 class="font-bold">Data Analysis Intern – Codtech IT Solutions</h4>
-      <p class="text-sm text-gray-500 mb-3">Jan 2026 - Feb 2026 | Remote</p>
-      <p class="text-sm text-gray-600">
-        Worked on data analysis tasks using publicly available datasets from Kaggle, including predictive modeling, 
-        sentiment analysis, and dashboard reporting.</p>
+    <div class="card rounded-xl p-6">
+      <div class="flex flex-wrap justify-between items-baseline gap-2 mb-3">
+        <h4 class="font-display font-bold">Data Analysis Intern — CODTECH IT Solutions</h4>
+        <span class="tab text-signal">Jan – Feb 2026 · remote</span>
+      </div>
+      <p class="text-sm text-ink/80 dark:text-gray-300 mb-4">
+        Worked across the analytics pipeline on public Kaggle datasets: large-scale data
+        processing with Dask, a loan-approval prediction model (~78% accuracy), sentiment
+        analysis on IMDB review data, and an interactive Tableau sales dashboard.
+      </p>
       <a href="https://github.com/annapurnagollapalli/Data-Analysis-Internship-Codtech"
-         target="_blank"
-         class="text-blue-600 font-semibold inline-block mt-3">
+         target="_blank" rel="noopener noreferrer"
+         class="text-signal font-semibold text-sm hover:underline">
          View Internship Repository →
       </a>
     </div>
+  </div>
+</section>
 
 <!-- PROJECTS -->
-<section id="projects" class="py-16 px-6">
-  <h3 class="text-2xl font-bold text-center text-primary mb-10">Projects</h3>
-
-  <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-
-     <div class="glass p-6 rounded-xl shadow-lg">
-      <h4 class="font-bold text-accent mb-2">Sales Data Analysis using Tableau</h4>
-<p class="text-sm mb-2"><b>Technologies:</b> Tableau, Excel</p>
-       <p>
-Analyzed a sales dataset sourced from Kaggle using Tableau to identify trends and generate business insights.
-</p>
-
-<ul>
-<li>Explored the dataset to understand sales patterns</li>
-<li>Built interactive dashboards in Tableau for data visualization</li>
-<li>Analyzed sales performance across products and regions</li>
-</ul>
-
-<a href="https://raw.githubusercontent.com/annapurnagollapalli/Data-Analysis-Internship-Codtech/main/Dashboard_Overview.png"
-target="_blank"
-style="color:#0066cc;font-weight:bold;">
-View Dashboard →
-</a>
-
-       <div class="glass p-6 rounded-xl shadow-lg">
-      <h4 class="font-bold text-accent mb-2">Loan Approval Prediction Model</h4>
-      <p class="text-sm mb-2"><p><b>Technologies:</b> Python, Pandas, NumPy, Scikit-learn</p></p>
-Built a machine learning model using Python to predict whether a loan application will be approved based on applicant information.
-</p>
-
-<ul>
-<li>Prepared and cleaned data for analysis</li>
-<li>Transformed categorical variables using <code>get_dummies()</code></li>
-<li>Standardized numerical features for consistent scaling</li>
-<li>Applied Logistic Regression to identify key patterns</li>
-<li>Assessed model accuracy and produced actionable predictions</li>
-</ul>
-      <a href="https://github.com/annapurnagollapalli/Data-Analysis-Internship-Codtech/blob/main/Loan_Approval_Prediction.ipynb"
-         target="_blank"
-         class="text-primary font-semibold hover:underline">
-         View Project →
-      </a>
-    </div>
-       
-    <div class="glass p-6 rounded-xl shadow-lg">
-      <h4 class="font-bold text-accent mb-2">Sentiment Analysis using NLP</h4>
-      <p class="text-sm mb-2">Python | Text Processing | Internship Task </p>
-      <a href="https://github.com/annapurnagollapalli/Data-Analysis-Internship-Codtech/blob/main/Sentiment_Analysis_NLP.ipynb"
-         target="_blank"
-         class="text-primary font-semibold hover:underline">
-         View Project →
-      </a>
+<section id="projects" class="py-16 px-6 grid-texture border-y border-ink/10 dark:border-white/10">
+  <div class="max-w-5xl mx-auto">
+    <div class="flex items-center gap-3 mb-10">
+      <span class="tab bg-ink text-white dark:bg-white dark:text-ink px-2.5 py-1 rounded">§04</span>
+      <h3 class="font-display text-2xl font-bold">Projects</h3>
     </div>
 
-    <div class="glass p-6 rounded-xl shadow-lg md:col-span-2">
-      <h4 class="font-bold text-accent mb-2">Big Data Analysis using Dask</h4>
-      <p class="text-sm mb-2">Python | Large Dataset Processing | Internship Task </p>
-      <a href="https://github.com/annapurnagollapalli/Data-Analysis-Internship-Codtech/blob/main/Big_Data_Analysis_Dask.ipynb"
-         target="_blank"
-         class="text-primary font-semibold hover:underline">
-         View Project →
-      </a>
-    </div>
+    <div class="grid md:grid-cols-2 gap-5">
 
+      <div class="card rounded-xl p-6">
+        <h4 class="font-display font-bold mb-1">Sales Data Analysis using Tableau</h4>
+        <p class="tab text-slate dark:text-gray-400 mb-3">tableau · excel</p>
+        <p class="text-sm text-ink/85 dark:text-gray-300 mb-3">
+          Analyzed a Kaggle sales dataset in Tableau to identify trends and generate business insights.
+        </p>
+        <ul class="text-sm text-ink/85 dark:text-gray-300 list-disc pl-5 space-y-1 mb-4">
+          <li>Explored the dataset to understand sales patterns</li>
+          <li>Built interactive dashboards with filters and trend views</li>
+          <li>Analyzed sales performance across products and regions</li>
+        </ul>
+        <a href="https://public.tableau.com/views/SalesPerformanceAnalysisDashboard_17722757621500/Dashboard1?:language=en-GB&publish=yes&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link"
+           target="_blank" rel="noopener noreferrer"
+           class="text-signal font-semibold text-sm hover:underline">
+           View Live Dashboard →
+        </a>
+      </div>
+
+      <div class="card rounded-xl p-6">
+        <h4 class="font-display font-bold mb-1">Loan Approval Prediction Model</h4>
+        <p class="tab text-slate dark:text-gray-400 mb-3">python · pandas · scikit-learn</p>
+        <p class="text-sm text-ink/85 dark:text-gray-300 mb-3">
+          Built a Logistic Regression model to predict loan approval from applicant data (~78% accuracy).
+        </p>
+        <ul class="text-sm text-ink/85 dark:text-gray-300 list-disc pl-5 space-y-1 mb-4">
+          <li>Prepared and cleaned data for analysis</li>
+          <li>Transformed categorical variables using <code>get_dummies()</code></li>
+          <li>Standardized numerical features for consistent scaling</li>
+          <li>Applied Logistic Regression to identify key patterns</li>
+        </ul>
+        <a href="https://github.com/annapurnagollapalli/Data-Analysis-Internship-Codtech/blob/main/Loan_Approval_Prediction.ipynb"
+           target="_blank" rel="noopener noreferrer"
+           class="text-signal font-semibold text-sm hover:underline">
+           View Project →
+        </a>
+      </div>
+
+      <div class="card rounded-xl p-6">
+        <h4 class="font-display font-bold mb-1">Sentiment Analysis using NLP</h4>
+        <p class="tab text-slate dark:text-gray-400 mb-3">python · tf-idf · scikit-learn</p>
+        <p class="text-sm text-ink/85 dark:text-gray-300 mb-4">
+          Performed sentiment analysis on the IMDB movie reviews dataset using TF-IDF vectorization
+          and a Logistic Regression classifier to distinguish positive from negative reviews.
+        </p>
+        <a href="https://github.com/annapurnagollapalli/Data-Analysis-Internship-Codtech/blob/main/Sentiment_Analysis_NLP.ipynb"
+           target="_blank" rel="noopener noreferrer"
+           class="text-signal font-semibold text-sm hover:underline">
+           View Project →
+        </a>
+      </div>
+
+      <div class="card rounded-xl p-6">
+        <h4 class="font-display font-bold mb-1">Big Data Analysis using Dask</h4>
+        <p class="tab text-slate dark:text-gray-400 mb-3">python · dask</p>
+        <p class="text-sm text-ink/85 dark:text-gray-300 mb-4">
+          Processed a large dataset with Dask to run scalable aggregations beyond what fits
+          comfortably in memory with Pandas alone, applying it to derive insights from big data.
+        </p>
+        <a href="https://github.com/annapurnagollapalli/Data-Analysis-Internship-Codtech/blob/main/Big_Data_Analysis_Dask.ipynb"
+           target="_blank" rel="noopener noreferrer"
+           class="text-signal font-semibold text-sm hover:underline">
+           View Project →
+        </a>
+      </div>
+
+    </div>
   </div>
 </section>
 
-  <!-- CERTIFICATIONS -->
+<!-- CERTIFICATIONS -->
 <section id="certifications" class="py-16 px-6">
-  <h3 class="text-2xl font-bold text-center text-primary mb-10">Certifications</h3>
-
-  <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-
-    <div class="glass p-6 rounded-xl shadow-lg">
-      <h4 class="font-bold text-accent mb-2">AI Dashboards with Microsoft Power BI</h4>
-      <p class="text-sm mb-2">Skill Nation | April 2025</p>
-      <a href="https://drive.google.com/file/d/1tK-ou84W0MltXA4tjdHNvzH7q-OuJbJl/view?usp=sharing"
-         target="_blank"
-         class="text-primary font-semibold hover:underline">
-         View Certificate →
-      </a>
+  <div class="max-w-4xl mx-auto">
+    <div class="flex items-center gap-3 mb-10">
+      <span class="tab bg-ink text-white dark:bg-white dark:text-ink px-2.5 py-1 rounded">§05</span>
+      <h3 class="font-display text-2xl font-bold">Certifications</h3>
     </div>
 
-    <div class="glass p-6 rounded-xl shadow-lg">
-      <h4 class="font-bold text-accent mb-2">Business Analysis Training</h4>
-      <p class="text-sm mb-2">SIT | Nov 2024 - Dec 2024</p>
-      <a href="https://drive.google.com/file/d/1bSKDXcXJlf6JPC3hG-6HfxoTeuM1L0j_/view?usp=sharing"
-        target="_blank"
-         class="text-primary font-semibold hover:underline">
-         View Certificate →
-      </a>
-    </div>
+    <div class="grid md:grid-cols-2 gap-5">
 
+      <div class="card rounded-xl p-6 flex items-start gap-4">
+        <span class="text-2xl">🎓</span>
+        <div>
+          <h4 class="font-display font-bold mb-1">AI Dashboards with Microsoft Power BI</h4>
+          <p class="tab text-slate dark:text-gray-400 mb-3">skill nation · april 2025</p>
+          <a href="https://drive.google.com/file/d/1tK-ou84W0MltXA4tjdHNvzH7q-OuJbJl/view?usp=sharing"
+             target="_blank" rel="noopener noreferrer"
+             class="text-signal font-semibold text-sm hover:underline">
+             View Certificate →
+          </a>
+        </div>
+      </div>
+
+      <div class="card rounded-xl p-6 flex items-start gap-4">
+        <span class="text-2xl">🎓</span>
+        <div>
+          <h4 class="font-display font-bold mb-1">Business Analysis Training</h4>
+          <p class="tab text-slate dark:text-gray-400 mb-3">sit · nov – dec 2024</p>
+          <a href="https://drive.google.com/file/d/1bSKDXcXJlf6JPC3hG-6HfxoTeuM1L0j_/view?usp=sharing"
+             target="_blank" rel="noopener noreferrer"
+             class="text-signal font-semibold text-sm hover:underline">
+             View Certificate →
+          </a>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
-
 
 <!-- CONTACT -->
-<section id="contact" class="py-16 text-center bg-primary text-white">
-  <h3 class="text-2xl font-bold mb-4">Contact</h3>
-  <p>Email: annapurnagollapalli4@gmail.com</p>
-  <p>Andhra Pradesh, India</p>
-  <p class="mt-4">
-    <a href="https://github.com/annapurnagollapalli" target="_blank" class="underline">GitHub</a> |
-    <a href="https://www.linkedin.com/in/annapurna-gollapalli-b4436a262/" target="_blank" class="underline">LinkedIn</a>
-  </p>
+<section id="contact" class="py-20 px-6 text-center bg-ink text-white">
+  <p class="tab text-stamp mb-3">// let's connect</p>
+  <h3 class="font-display text-3xl font-bold mb-4">Open to Data & Business Analyst roles</h3>
+  <p class="text-white/80">annapurnagollapalli4@gmail.com</p>
+  <p class="text-white/60 mb-6">Andhra Pradesh, India</p>
+  <div class="flex justify-center gap-4">
+    <a href="https://github.com/annapurnagollapalli" target="_blank" rel="noopener noreferrer"
+       class="border border-white/40 px-5 py-2 rounded-md text-sm font-medium hover:bg-white hover:text-ink transition">GitHub</a>
+    <a href="https://www.linkedin.com/in/annapurna-gollapalli-b4436a262/" target="_blank" rel="noopener noreferrer"
+       class="border border-white/40 px-5 py-2 rounded-md text-sm font-medium hover:bg-white hover:text-ink transition">LinkedIn</a>
+  </div>
 </section>
 
-<footer class="text-center py-4 text-sm">
+<footer class="text-center py-6 text-xs text-ink/50 dark:text-gray-500">
   © 2026 Annapurna Gollapalli. All Rights Reserved.
 </footer>
 
 <script>
 const roles = [
-  "Tech and Data Enthusiast",
-  "Python | SQL | Dashboard Development",
-  "Data Analysis & Business Reporting",
+  "data_analyst.explore(df)",
+  "business_analyst.write(brd)",
+  "python · sql · power_bi · tableau",
+  "requirements · jira · sdlc"
 ];
 
 let roleIndex = 0;
@@ -287,27 +426,33 @@ function typeEffect() {
   if (charIndex < roles[roleIndex].length) {
     typingElement.textContent += roles[roleIndex].charAt(charIndex);
     charIndex++;
-    setTimeout(typeEffect, 60);
+    setTimeout(typeEffect, 55);
   } else {
-    setTimeout(eraseEffect, 1500);
+    setTimeout(eraseEffect, 1400);
   }
 }
-
 function eraseEffect() {
   if (charIndex > 0) {
     typingElement.textContent = roles[roleIndex].substring(0, charIndex - 1);
     charIndex--;
-    setTimeout(eraseEffect, 40);
+    setTimeout(eraseEffect, 30);
   } else {
     roleIndex = (roleIndex + 1) % roles.length;
-    setTimeout(typeEffect, 300);
+    setTimeout(typeEffect, 250);
   }
 }
-
 document.addEventListener("DOMContentLoaded", typeEffect);
 
 function toggleDarkMode() {
   document.documentElement.classList.toggle('dark');
+}
+function toggleMobileMenu() {
+  const menu = document.getElementById('mobile-menu');
+  const btn = document.getElementById('menu-btn');
+  const isHidden = menu.classList.contains('hidden');
+  menu.classList.toggle('hidden');
+  menu.classList.toggle('flex');
+  btn.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
 }
 </script>
 
